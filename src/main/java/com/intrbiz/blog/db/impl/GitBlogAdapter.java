@@ -99,7 +99,7 @@ public class GitBlogAdapter extends BlogAdapter
         }
         catch (Exception e)
         {
-            throw new DataException("Error updating content repository", e);
+            throw new DataException("Error setting up content repository", e);
         }
     }
 
@@ -380,8 +380,16 @@ public class GitBlogAdapter extends BlogAdapter
             if (result.getRebaseResult().getStatus().isSuccessful() && result.getRebaseResult().getStatus() != Status.UP_TO_DATE)
             {
                 logger.info("Got content changes, rescanning content");
-                // TODO: we can't rescan as we don't have a context
-                this.cache.clear();
+                // we need to setup a dummy BalsaContext
+                BalsaContext ctx = new BalsaContext(this.application).bind();
+                try
+                {
+                    this.clearCache();
+                }
+                finally
+                {
+                    ctx.unbind();
+                }
             }
         }
         catch (Exception e)
