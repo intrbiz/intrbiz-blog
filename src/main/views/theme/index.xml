@@ -1,0 +1,13 @@
+<!DOCTYPE balsa SYSTEM "http://balsa.intrbiz.net/balsa.dtd">
+<?RenderLibrary com.intrbiz.balsa?>
+<!-- The index view -->
+<fragment xmlns="com.intrbiz.balsa" title="Welcome">
+	<data-set var="post" value="#{posts}">
+		<div class="posts">
+			<a href="#{'post/' + post.name}">
+                <h1>#{post.title}</h1>
+            </a>
+            <include view="#{'posts/' + post.name}"/>
+		</div>
+	</data-set>
+</fragment>

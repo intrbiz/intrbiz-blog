@@ -1,0 +1,14 @@
+<!DOCTYPE balsa SYSTEM "http://balsa.intrbiz.net/balsa.dtd">
+<?RenderLibrary com.intrbiz.balsa?>
+<!-- Article template -->
+<fragment xmlns="com.intrbiz.balsa" title="#{title()}">
+	<div class="post">
+        <div class="post-header">
+            <h1>#{title()}</h1>
+            <div class="post-info">
+                by #{post.author}, on #{dateformat('yyyy-MM-dd', post.date)}
+            </div>
+        </div>
+		<content/>
+	</div>
+</fragment>

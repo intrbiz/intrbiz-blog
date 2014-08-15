@@ -1,0 +1,11 @@
+<!DOCTYPE balsa SYSTEM "http://balsa.intrbiz.net/balsa.dtd">
+<?RenderLibrary com.intrbiz.balsa?>
+<!-- The index view -->
+<fragment xmlns="com.intrbiz.balsa" title="Post not found">
+	<div class="post">
+		<h1>Post not found!</h1>
+		<p>
+			The post you were looking for could not be found.
+		</p>
+	</div>
+</fragment>

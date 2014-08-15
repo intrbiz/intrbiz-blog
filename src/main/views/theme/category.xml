@@ -1,0 +1,17 @@
+<!DOCTYPE balsa SYSTEM "http://balsa.intrbiz.net/balsa.dtd">
+<?RenderLibrary com.intrbiz.balsa?>
+<!-- Article template -->
+<fragment xmlns="com.intrbiz.balsa" title="#{title()}">
+	<div class="category">
+		<h1>#{category.title}</h1>
+		<content />
+	</div>
+	<data-set var="post" value="#{posts}">
+		<div class="post">
+			<a href="#{'post/' + post.name}">
+				<h1>#{post.title}</h1>
+			</a>
+			<include view="#{'posts/' + post.name}"/>
+		</div>
+	</data-set>
+</fragment>

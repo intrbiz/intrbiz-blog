@@ -1,0 +1,69 @@
+<!DOCTYPE balsa SYSTEM "http://balsa.intrbiz.net/balsa.dtd">
+<?RenderLibrary com.intrbiz.balsa?>
+<fragment xmlns="com.intrbiz.balsa">
+    <!-- Start Nav -->
+    <div id="nav">
+        <ul data-menu="#{main_menu.id}">
+            <data-set var="entry" value="#{main_menu.entries}">
+                <li rendered="#{entry.linkType == 'plain' || entry.linkType == 'plain-menu'}">
+                    <a data-link="#{path('/api' + entry.link)}" data-tab="#{entry.id}" href="#{entry.link}" class="#{if(entry.link == path_info(), 'current', '')}">#{entry.title}</a>
+                </li>
+                <li rendered="#{entry.linkType == 'category' || entry.linkType == 'category-menu'}">
+                    <a data-link="#{path('/api/category/' + entry.link)}" data-tab="#{entry.id}" href="#{'/category/' + entry.link}" class="#{if(is_in_category(entry.link), 'current', '')}">#{entry.title}</a>
+                </li>
+            </data-set>
+        </ul>
+    </div>
+    <div id="sub-nav" data-menu="#{main_menu.id}">
+        <data-set var="entry" value="#{main_menu.entries}">
+            <div id="#{entry.id}" rendered="#{entry.linkType == 'plain' || entry.linkType == 'plain-menu'}" class="#{if(entry.link == path_info(), 'current', '')}">
+                <div class="#{if(entry.linkType == 'plain', 'full', '')}">
+                    <a href="#{entry.link}">
+                        <h3>#{entry.title}</h3>
+                        <p>#{entry.content}</p>
+                    </a>
+                </div>
+                <ul rendered="#{entry.linkType == 'plain-menu'}">
+                    <data-set var="subentry" value="#{entry.entries}">
+                        <li><a href="#{subentry.link}">#{subentry.title}</a></li>
+                    </data-set>
+                </ul>
+            </div>
+            <div id="#{entry.id}" rendered="#{entry.linkType == 'category' || entry.linkType == 'category-menu'}" class="#{if(is_in_category(entry.link), 'current', '')}">
+                <div>
+                    <a href="#{'/category/' + entry.link}">
+                        <h3>#{entry.title}</h3>
+                        <p>#{entry.content}</p>
+                    </a>
+                </div>
+                <ul rendered="#{entry.linkType == 'category'}">
+                    <li>
+                        <span>Recent Posts</span>
+                        <ul>
+                            <data-set var="post" value="#{entry.category.getRecentPosts(3)}">
+                                <li><a href="#{'/post/' + post.name}">#{post.title}</a></li>
+                            </data-set>
+                        </ul>
+                    </li>
+                </ul>
+                <ul rendered="#{entry.linkType == 'category' and entry.category.getCategories(3).size() > 0}">
+                    <li>
+                        <span>Categories</span>
+                        <ul>
+                            <data-set var="category" value="#{entry.category.getCategories(3)}">
+                                <li><a href="#{'/category/' + category.name}">#{category.title}</a></li>
+                            </data-set>
+                        </ul>
+                    </li>
+                </ul>
+                <ul rendered="#{entry.linkType == 'category-menu'}">
+                    <data-set var="subentry" value="#{entry.menu}">
+                        <li><a href="#{'/category/' + subentry.link}">#{subentry.title}</a></li>
+                    </data-set>
+                    <li><a href="#{'/category/' + entry.link}">more...</a></li>
+                </ul>
+            </div>
+        </data-set>
+    </div>
+    <!-- End Nav -->
+</fragment>
