@@ -94,5 +94,17 @@
 			</plugin>
 		</plugins>
 	</build>
+    
+    <distributionManagement>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://nexus.intrbiz.net/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>intrbiz</id>
+            <name>Intrbiz</name>
+            <url>http://nexus.intrbiz.net/nexus/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
 	
 </project>
