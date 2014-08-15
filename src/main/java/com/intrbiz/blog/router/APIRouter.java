@@ -99,8 +99,6 @@ public class APIRouter extends Router<BlogApp>
         require("127.0.0.1".equals(request().getRemoteAddress()));
         logger.info("Clearing caches, requested by: " + request().getRemoteAddress());
         data.clearCache();
-        app().getViewEngine().clearCache();
-        System.gc();
         return new CachesCleared();
     }
 }

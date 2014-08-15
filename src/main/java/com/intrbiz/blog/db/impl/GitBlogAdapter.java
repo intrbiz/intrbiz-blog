@@ -358,10 +358,16 @@ public class GitBlogAdapter extends BlogAdapter
     public void clearCache()
     {
         this.cache.clear();
+        this.application.getViewEngine().clearCache();
+        System.gc();
         // rescan
-        this.getMenus();
-        this.getCategories();
-        this.getPosts();
+        if (BalsaContext.Balsa() != null)
+        {
+            // only rescan if we have a context
+            this.getMenus();
+            this.getCategories();
+            this.getPosts();
+        }
     }
     
     public synchronized void rebase()
@@ -374,7 +380,8 @@ public class GitBlogAdapter extends BlogAdapter
             if (result.getRebaseResult().getStatus().isSuccessful() && result.getRebaseResult().getStatus() != Status.UP_TO_DATE)
             {
                 logger.info("Got content changes, rescanning content");
-                this.clearCache();
+                // TODO: we can't rescan as we don't have a context
+                this.cache.clear();
             }
         }
         catch (Exception e)
