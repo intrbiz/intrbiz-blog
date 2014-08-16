@@ -244,11 +244,24 @@ a {
 
 #content pre {
     padding: 20px;
+    font-family: 'Droid Sans Mono', 'Open Sans', sans-serif;
     font-size: 16px;
-    background: #f8f8f8;
+    background: #000;
+    color: #fafafa;
     border: 1px dashed #DDD;
 	margin-bottom: 20px;
     overflow: auto;
+}
+
+#content pre code {
+    overflow: visible;
+}
+
+#content pre.plain {
+    padding: 20px;
+    font-family: 'Droid Sans Mono', 'Open Sans', sans-serif;
+    background: #f8f8f8;
+    color: #000;
 }
 
 #footer {
