@@ -248,6 +248,7 @@ a {
     background: #F5F5F5;
     border: 1px dashed #DDD;
 	margin-bottom: 20px;
+    overflow: auto;
 }
 
 #footer {
