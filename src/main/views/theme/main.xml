@@ -4,10 +4,12 @@
 <html xmlns="com.intrbiz.balsa">
 	<head>
 		<title>#{title()} - Chris's Blog</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" type="text/css" href="#{path('/style.css')}" />
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css" />
 		<script type="text/javascript" src="#{path('/js/jquery-1.7.1.js')}"></script>
 		<script type="text/javascript" src="#{path('/js/jquery.cycle.all.js')}"></script>
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-		<link rel="stylesheet" type="text/css" href="#{path('/style.css')}" />
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$("#nav ul li a").click(function(ev){
@@ -31,6 +33,9 @@
 						});
 					}
 				});
+                $('pre').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
 			});
 		</script>
 	</head>
