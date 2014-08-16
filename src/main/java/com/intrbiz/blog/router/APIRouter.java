@@ -6,6 +6,7 @@ import com.intrbiz.Util;
 import com.intrbiz.balsa.engine.route.Router;
 import com.intrbiz.balsa.error.http.BalsaNotFound;
 import com.intrbiz.balsa.error.view.BalsaViewNotFound;
+import com.intrbiz.balsa.http.HTTP.HTTPStatus;
 import com.intrbiz.balsa.metadata.WithDataAdapter;
 import com.intrbiz.blog.BlogApp;
 import com.intrbiz.blog.db.BlogAdapter;
@@ -75,7 +76,7 @@ public class APIRouter extends Router<BlogApp>
     }
     
     @Any("/**")
-    @JSON()
+    @JSON(status = HTTPStatus.NotFound)
     @Catch(BalsaViewNotFound.class)
     public ErrorResponse notFound()
     {
@@ -83,9 +84,9 @@ public class APIRouter extends Router<BlogApp>
     }
     
     @Any("/**")
-    @JSON()
+    @JSON(status = HTTPStatus.InternalServerError)
     @Catch()
-    @Order(Order.LAST)
+    @Order(Order.LAST -1)
     public ErrorResponse error()
     {
         return new ErrorResponse("Error", encodeBuffered("theme/error"));
