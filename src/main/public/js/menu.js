@@ -8,7 +8,6 @@ $(document).ready(function()
     $(window).on('hashchange', function()
     {
         var hash = location.hash;
-        console.log("Hash: " + hash);
         if (hash.match(/^#!.+/))
         {
             var uri = hash.substring(2);
@@ -39,6 +38,10 @@ $(document).ready(function()
                     });
                 }
             });
+        }
+        else if (hash == '')
+        {
+            window.location = window.location;
         }
     });
     /* Link event handlers */
