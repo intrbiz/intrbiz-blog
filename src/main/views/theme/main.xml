@@ -2,59 +2,70 @@
 <?RenderLibrary com.intrbiz.balsa?>
 <!-- A template view, applied to all views -->
 <html xmlns="com.intrbiz.balsa">
-	<head>
-		<title>#{title()} - Chris's Blog</title>
+    <head>
+        <title>#{title()} - Intrbiz Blog</title>
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono|Open+Sans' rel='stylesheet' type='text/css' />
         <link rel="stylesheet" type="text/css" href="#{public('/style.css')}" />
         <link rel="stylesheet" href="#{public('/styles/ir_black.css')}" />
-		<script type="text/javascript" src="#{public('/js/jquery-1.7.1.js')}"></script>
-		<script type="text/javascript" src="#{public('/js/jquery.cycle.all.js')}"></script>
+        <script type="text/javascript" src="#{public('/js/jquery-1.7.1.js')}"></script>
+        <script type="text/javascript" src="#{public('/js/jquery.cycle.all.js')}"></script>
         <script src="#{public('/js/highlight.pack.js')}"></script>
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$("#nav ul li a").click(function(ev){
-					ev.preventDefault();
-					var id = "#" + $(this).attr("data-tab");
-					$("#sub-nav > div").removeClass("current");
-					$(id).addClass("current");
-					$("#nav ul li a").removeClass("current");
-					$(this).addClass("current");
-					// load content
-					var key = #{'"' + access_token() + '"'};
-					var uri = $(this).attr('data-link');
-					if (uri)
-					{
-						$.getJSON(uri + '?key=' + key, function(data) {
-							if (data.stat == 'OK')
-							{
-								$("#content").html(data.content);
-								$(document).attr('title', data.title + ' - Chris\'s Blog');
-							}
-						});
-					}
-				});
-                $('pre code').each(function(i, block) {
+        <script type="text/javascript">
+            $(document).ready(function() 
+            {
+                /* Setup smart menu which fetches content via the JSON API */
+                $("#nav ul li a").click(function(ev) 
+                {
+                    ev.preventDefault();
+                    var id = "#" + $(this).attr("data-tab");
+                    $("#sub-nav > div").removeClass("current");
+                    $(id).addClass("current");
+                    $("#nav ul li a").removeClass("current");
+                    $(this).addClass("current");
+                    // load content
+                    var key = #{'"' + access_token() + '"'};
+                    var uri = $(this).attr('data-link');
+                    if (uri)
+                    {
+                        $.getJSON(uri + '?key=' + key, function(data)
+                        {
+                            if (data.stat == 'OK')
+                            {
+                                $("#content").html(data.content);
+                                $(document).attr('title', data.title + ' - Intrbiz Blog');
+                                /* Highlight code blocks */
+                                $('pre code').each(function(i, block)
+                                {
+                                    hljs.highlightBlock(block);
+                                });
+                            }
+                        });
+                    }
+                });
+                /* Highlight code blocks */
+                $('pre code').each(function(i, block)
+                {
                     hljs.highlightBlock(block);
                 });
-			});
-		</script>
-	</head>
-	<body id="home">
-		<div id="header">
-			<div id="logo">
-				<div id="logo-inner">
-					<a href="/"><img src="#{public('/ib_logo_h100.png')}" /></a>
-				</div>
-			</div>
-			<!-- Start Nav -->
-			<include view="theme/menu" />
-			<!-- End Nav -->
-		</div>
-		<div id="content">
-			<content/>
-		</div>
-		<div id="footer">
-			<a href="http://gofish.intrbiz.com/gofish/">go fish</a>
-		</div>
-	</body>
+            });
+        </script>
+    </head>
+    <body id="home">
+        <div id="header">
+            <div id="logo">
+                <div id="logo-inner">
+                    <a href="/"><img src="#{public('/ib_logo_h100.png')}" /></a>
+                </div>
+            </div>
+            <!-- Start Nav -->
+            <include view="theme/menu" />
+            <!-- End Nav -->
+        </div>
+        <div id="content">
+            <content/>
+        </div>
+        <div id="footer">
+            <a href="http://gofish.intrbiz.com/gofish/">go fish</a>
+        </div>
+    </body>
 </html>
