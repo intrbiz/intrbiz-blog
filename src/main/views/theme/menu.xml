@@ -6,10 +6,10 @@
         <ul data-menu="#{main_menu.id}">
             <data-set var="entry" value="#{main_menu.entries}">
                 <li rendered="#{entry.linkType == 'plain' || entry.linkType == 'plain-menu'}">
-                    <a data-link="#{path('/api' + entry.link)}" data-tab="#{entry.id}" href="#{entry.link}" class="#{if(entry.link == path_info(), 'current', '')}">#{entry.title}</a>
+                    <a data-link="#{entry.link}" data-tab="#{entry.id}" href="#{entry.link}" class="#{if(entry.link == path_info(), 'current', '')}">#{entry.title}</a>
                 </li>
                 <li rendered="#{entry.linkType == 'category' || entry.linkType == 'category-menu'}">
-                    <a data-link="#{path('/api/category/' + entry.link)}" data-tab="#{entry.id}" href="#{'/category/' + entry.link}" class="#{if(is_in_category(entry.link), 'current', '')}">#{entry.title}</a>
+                    <a data-link="#{'/category/' + entry.link}" data-tab="#{entry.id}" href="#{'/category/' + entry.link}" class="#{if(is_in_category(entry.link), 'current', '')}">#{entry.title}</a>
                 </li>
             </data-set>
         </ul>
