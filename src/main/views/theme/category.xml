@@ -6,12 +6,19 @@
 		<h1>#{category.title}</h1>
 		<content />
 	</div>
-	<data-set var="post" value="#{posts}">
-		<div class="post">
-			<a href="#{'post/' + post.name}">
-				<h1>#{post.title}</h1>
-			</a>
-			<include view="#{'posts/' + post.name}"/>
-		</div>
-	</data-set>
+    <div class="posts">
+        <data-set var="post" value="#{posts}">
+            <div class="post">
+                <div class="post-header">
+                    <a href="#{'post/' + post.name}">
+                        <h1>#{post.title}</h1>
+                    </a>
+                    <div class="post-info">
+                        by #{post.author}, on #{dateformat('yyyy-MM-dd', post.date)}
+                    </div>
+                </div>
+                <include view="#{'posts/' + post.name}"/>
+            </div>
+        </data-set>
+    </div>
 </fragment>

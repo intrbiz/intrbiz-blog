@@ -208,7 +208,7 @@ a {
 }
 
 #content a {
-	border-bottom: 1px dashed #FFD500;
+	text-decoration: underline;
 }
 
 #content a:hover {
@@ -217,12 +217,22 @@ a {
 }
 
 #content .post {
-	margin-bottom: 80px;
+	margin-bottom: 40px;
 }
 
-#content .posts a {
+#content .posts .post-header a {
 	display: block;
 	border: none;
+    text-decoration: underline;
+}
+
+#content .posts .post {
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #000;
+}
+
+#content .posts .post:last-child {
+    border-bottom: none;
 }
 
 #content .post-header h1 {
@@ -235,7 +245,6 @@ a {
 
 #content .post-header .post-info {
     font-size: 12px;
-    
 }
 
 #content .posts a:hover p {
