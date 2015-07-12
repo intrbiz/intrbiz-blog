@@ -40,17 +40,17 @@
                     <li>
                         <span>Recent Posts</span>
                         <ul>
-                            <data-set var="post" value="#{entry.category.getRecentPosts(3)}">
+                            <data-set var="post" value="#{entry.category.getRecentPosts(4)}">
                                 <li><a href="#{'/post/' + post.name}">#{post.title}</a></li>
                             </data-set>
                         </ul>
                     </li>
                 </ul>
-                <ul rendered="#{entry.linkType == 'category' and entry.category.getCategories(3).size() > 0}">
+                <ul rendered="#{entry.linkType == 'category' and entry.category.getCategories(4).size() > 0}">
                     <li>
                         <span>Categories</span>
                         <ul>
-                            <data-set var="category" value="#{entry.category.getCategories(3)}">
+                            <data-set var="category" value="#{entry.category.getCategories(4)}">
                                 <li><a href="#{'/category/' + category.name}">#{category.title}</a></li>
                             </data-set>
                         </ul>
