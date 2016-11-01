@@ -38,7 +38,7 @@ public class APIRouter extends Router<BlogApp>
     public IndexResponse index(BlogAdapter data)
     {
         var("posts", data.getRecentPosts(10));
-        return new IndexResponse("Welcome", encodeBuffered("theme/index"));
+        return new IndexResponse("Welcome", encodeBuffered("theme/index", "pages/index"));
     }
     
     @Any("/category/**:category")

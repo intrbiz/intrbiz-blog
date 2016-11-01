@@ -39,7 +39,7 @@ public class BlogRouter extends Router<BlogApp>
     public void index(BlogAdapter data)
     {
         var("posts", data.getRecentPosts(10));
-        encode("theme/index");
+        encode("theme/index", "pages/index");
     }
     
     @Any("/category/**:category")

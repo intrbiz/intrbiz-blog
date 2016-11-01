@@ -5,7 +5,7 @@
     <head>
         <title>#{title()} - Intrbiz Blog</title>
         <link href="#{balsa().request.requestScheme}://fonts.googleapis.com/css?family=Droid+Sans+Mono|Open+Sans" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" type="text/css" href="#{public('/style.css')}" />
+        <link rel="stylesheet" type="text/css" href="#{public('/style_v2.css')}" />
         <link rel="stylesheet" href="#{public('/styles/ir_black.css')}" />        
         <script src="#{public('/js/jquery-2.1.1.min.js')}"></script>
         <script src="#{public('/js/highlight.pack.js')}"></script>

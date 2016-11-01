@@ -18,7 +18,7 @@ public class BlogApp extends BalsaApplication
     protected void setup()
     {
         // the directory holding the blog content
-        File contentDir = new File(System.getProperty("blog.content", "/home/cellis/blog"));
+        File contentDir = new File(System.getProperty("blog.content", "/data/cellis/Intrbiz/blog"));
         // setup the content dir as a view path
         viewPath(contentDir);
         // enable markdown support

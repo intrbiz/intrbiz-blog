@@ -1,20 +1,6 @@
 <!DOCTYPE balsa SYSTEM "http://balsa.intrbiz.net/balsa.dtd">
 <?RenderLibrary com.intrbiz.balsa?>
 <!-- The index view -->
-<fragment xmlns="com.intrbiz.balsa" title="Welcome">
-    <div class="posts">
-        <data-set var="post" value="#{posts}">
-            <div class="post">
-                <div class="post-header">
-                    <a href="#{'post/' + post.name}">
-                        <h1>#{post.title}</h1>
-                    </a>
-                    <div class="post-info">
-                        by #{post.author}, on #{dateformat('yyyy-MM-dd', post.date)}
-                    </div>
-                </div>
-                <include view="#{'posts/' + post.name}"/>
-            </div>
-        </data-set>
-    </div>
+<fragment xmlns="com.intrbiz.balsa" title="#{title()}">
+        <content/>
 </fragment>
