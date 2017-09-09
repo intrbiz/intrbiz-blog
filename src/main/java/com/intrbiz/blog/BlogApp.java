@@ -15,7 +15,7 @@ import com.intrbiz.data.cache.memory.local.LocalMemoryCacheProvider;
 public class BlogApp extends BalsaApplication
 {
     @Override
-    protected void setup()
+    protected void setupEngines() throws Exception
     {
         // the directory holding the blog content
         File contentDir = new File(System.getProperty("blog.content", "/data/cellis/Intrbiz/blog"));
@@ -26,11 +26,31 @@ public class BlogApp extends BalsaApplication
         // setup the data store
         DataManager.get().registerDefaultCacheProvider(new LocalMemoryCacheProvider());
         DataManager.get().registerDataAdapter(BlogAdapter.class, GitBlogAdapter.factory(contentDir, this));
+    }
+
+    @Override
+    protected void setupFunctions() throws Exception
+    {
         // functions
         function("is_in_category", IsInCategory.class);
+    }
+
+    @Override
+    protected void setupActions() throws Exception
+    { 
+    }
+
+    @Override
+    protected void setupRouters() throws Exception
+    {
         // Setup the application routers
         router(new BlogRouter());
         router(new APIRouter());
+    }
+
+    @Override
+    protected void startApplication() throws Exception
+    {
     }
     
     public static void main(String[] args) throws Exception
